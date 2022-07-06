@@ -7,4 +7,5 @@ version = "0.1.0"
 
 [dependencies]
 chrono = "0.4"
+serde = {version = "1.0", features = ["derive"]}
 utils = {path = "../utils"}

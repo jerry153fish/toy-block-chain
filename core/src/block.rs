@@ -1,12 +1,15 @@
 use chrono::prelude::*;
+use serde::{Deserialize, Serialize};
 use utils::coder::*;
 
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct BlockHeader {
     pub timestamp: i64,
     pub tx_hash: String,
     pub prev_hash: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Block {
     pub header: BlockHeader,
     pub hash: String,
@@ -33,6 +36,16 @@ impl Block {
     }
 }
 
-// pub struct BlockChain {
-//     pub blocks: Vec<Block>,
-// }
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn block_works() {
+        let block = Block::new("test".to_string(), "0".to_string());
+        assert_eq!(block.data, "test");
+        assert_eq!(
+            block.header.tx_hash,
+            "c3e53ee0e3b2655fb8658831847e5685a30e2c5a5ea83f675b97abe7cb1fc599"
+        );
+    }
+}
